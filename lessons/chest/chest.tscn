@@ -30,7 +30,6 @@ texture = ExtResource("2_12as2")
 position = Vector2(0, 7)
 texture = ExtResource("3_65g6b")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup"]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_4q7cj")
