@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_65g6b"]
 resource_local_to_scene = true
 shader = ExtResource("1_12as2")
-shader_parameter/line_color = Color(0.056996055, 0.3546186, 0.4680819, 1)
+shader_parameter/line_color = Color(0.5814851, 0.1091251, 0.20435774, 1)
 shader_parameter/line_thickness = 4.0
 shader_parameter/viewport_scale = Vector2(1, 1)
 
