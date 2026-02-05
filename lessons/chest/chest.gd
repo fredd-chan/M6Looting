@@ -11,8 +11,21 @@ func _spawn_random_item() -> void:
 	var random_angle := randf_range(0.0, 2.0 * PI)
 	var random_direction := Vector2(1.0, 0.0).rotated(random_angle)
 	var random_distance := randf_range(60.0, 120.0)
-	loot_item.position = random_direction * random_distance
-
+	var land_position := random_direction * random_distance
+	const FLIGHT_TIME := 0.4
+	const HALF_FLIGHT_TIME := FLIGHT_TIME/ 2.0
+	var tween := create_tween()
+	tween.set_parallel()
+	loot_item.scale = Vector2(0.25, 0.25)
+	tween.tween_property(loot_item, "scale", Vector2(1.0, 1.0), HALF_FLIGHT_TIME)
+	tween.tween_property(loot_item, "position:x", land_position.x, FLIGHT_TIME)
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_OUT)
+	var jump_height := randf_range(30.0, 80.0)
+	tween.tween_property(loot_item, "position:y", land_position.y - jump_height, HALF_FLIGHT_TIME)
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(loot_item, "position:y", land_position.y, HALF_FLIGHT_TIME)
 func open() -> void:
 	if is_open:
 		return
@@ -22,7 +35,7 @@ func open() -> void:
 	input_pickable = false
 	if possible_items.is_empty():
 		return
-	for current_index in range(randi_range(1, 3)):
+	for current_index in range(randi_range(1,5)):
 		_spawn_random_item()
 
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
